@@ -1,0 +1,21 @@
+{
+  "name": "public",
+  "authors": [
+    "Daniil Borovkov <daniilborowkow@yandex.ru>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "4.0.0-beta.3"
+  }
+}

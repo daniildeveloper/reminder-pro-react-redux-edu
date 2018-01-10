@@ -1,1 +1,1 @@
-export const ADD_REMINDER = 1;
+export const ADD_REMINDER = 'ADD_REMINDER';

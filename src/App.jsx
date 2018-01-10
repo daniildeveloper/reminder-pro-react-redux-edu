@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
-import {  } from "./";
+import { bindActionCreators } from 'redux';
+import { addReminder } from './actions';
 
 class App extends Component {
 
@@ -13,17 +14,18 @@ class App extends Component {
     }
   }
 
-  addReminder() {
-    console.log('this.state', this.state); 
+  addReminder () {
+    // console.log('this', this);
+    this.props.addReminder(this.state.text);
   }
 
-  render() {
+  render () {
     return (
       <div className="App container">
         <div className="title">Reminder Pro</div>
         <div className="form-inline">
           <div className="form-group">
-            <input onChange={event => this.setState({ text: event.target.value })} type="text" className="form-control" placeholder="I have to ..."/>
+            <input onChange={event => this.setState({ text: event.target.value })} type="text" className="form-control" placeholder="I have to ..." />
           </div>
           <button
             className="btn btn-success"
@@ -38,4 +40,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { addReminder })(App);

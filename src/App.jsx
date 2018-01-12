@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { addReminder } from './actions';
+import { addReminder, deleteReminder } from './actions';
 
 class App extends Component {
 
@@ -19,6 +19,11 @@ class App extends Component {
     this.props.addReminder(this.state.text);
   }
 
+  deleteReminder (id) {
+    console.log('deleting in application', id);
+    console.log('this.props', this.props);    
+  }
+
   /**
    * Render all reminders submiited by users
    */
@@ -30,7 +35,12 @@ class App extends Component {
           reminders.map(reminder => {
             return (
               <li key={reminder.id} className="list-group-item">
-                {reminder.text}
+                <div className="list-item">{reminder.text}</div>
+                <div
+                 onClick={() => {this.deleteReminder(reminder.id)}}
+                 className="delete-button list-item">
+                  &#x2715;
+                </div>
               </li>
             )
           })
@@ -68,4 +78,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { addReminder })(App);
+export default connect(mapStateToProps, { addReminder, deleteReminder })(App);

@@ -10,13 +10,13 @@ class App extends Component {
     super(props);
     this.state = {
       text: '',
-
+      dueDate: ''
     }
   }
 
   addReminder () {
-    // console.log('this', this);
-    this.props.addReminder(this.state.text);
+    console.log('this.state.dueDate', this.state.dueDate);
+    this.props.addReminder(this.state.text, this.state.dueDate);
   }
 
   deleteReminder (id) {
@@ -26,8 +26,8 @@ class App extends Component {
   /**
    * Render all reminders submiited by users
    */
-  renderReminders() {
-    const {reminders} = this.props;
+  renderReminders () {
+    const { reminders } = this.props;
     return (
       <ul className="list-group col-sm-4">
         {
@@ -36,8 +36,8 @@ class App extends Component {
               <li key={reminder.id} className="list-group-item">
                 <div className="list-item">{reminder.text}</div>
                 <div
-                 onClick={() => {this.deleteReminder(reminder.id)}}
-                 className="delete-button list-item">
+                  onClick={() => { this.deleteReminder(reminder.id) }}
+                  className="delete-button list-item">
                   &#x2715;
                 </div>
               </li>
@@ -55,6 +55,11 @@ class App extends Component {
         <div className="form-inline reminder-form">
           <div className="form-group">
             <input onChange={event => this.setState({ text: event.target.value })} type="text" className="form-control" placeholder="I have to ..." />
+
+            <input
+              className="form-control"
+              onChange={event => this.setState({ dueDate: event.target.value })}
+              type="datetime-local" name="" id="" />
           </div>
           <button
             className="btn btn-success"
@@ -64,13 +69,13 @@ class App extends Component {
             Add Reminder
           </button>
         </div>
-          {this.renderReminders()}
+        {this.renderReminders()}
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   console.log('state', state);
   return {
     reminders: state,

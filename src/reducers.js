@@ -4,9 +4,15 @@ import {
 } from "./constants";
 
 const reminder = (action) => {
+    let {
+        text,
+        dueDate
+    } = action;
     return {
-        text: action.text,
-        id: Math.random()
+        // text: action.text,
+        id: Math.random(),
+        text,
+        dueDate,
     }
 }
 

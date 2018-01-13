@@ -1,6 +1,7 @@
 import {
     ADD_REMINDER,
-    DELETE_REMINDER
+    DELETE_REMINDER,
+    CLEAR_REMINDERS
 } from "./constants";
 
 import {
@@ -40,6 +41,10 @@ const reminders = (state = [], action) => {
         case DELETE_REMINDER:
             reminders = removeByID(state, action.id);
             bake_cookie(reminders)
+            return reminders;
+        case CLEAR_REMINDERS:
+            reminders = [];
+            bake_cookie('reminders', reminders);
             return reminders;
         default:
             return state;
